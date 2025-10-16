@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="logo2.png" type="image/png">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Crypto Modern</title>
+    <style>
+        :root {
+            --bg: #0f1720;
+            --card: #0b1220;
+            --muted: #99a0a6;
+            --text: #e6eef6;
+            --accent: #00b3b3;
+            --success: #28a745;
+            --error: #e55353;
+            --warning: #f0ad4e;
+            --glass: rgba(255, 255, 255, 0.03);
+            --radius: 14px;
+            --font-sans: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+          
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background:
+                radial-gradient(1200px 600px at 10% 10%, rgba(0, 179, 179, 0.06), transparent 8%),
+                radial-gradient(900px 400px at 90% 90%, rgba(40, 167, 69, 0.03), transparent 6%), var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 36px auto;
+            padding: 28px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            border-radius: var(--radius);
+            box-shadow: 0 8px 40px rgba(2, 6, 23, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent), #2d9ca3);
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            font-size: 22px
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 20px
+        }
+
+        p.lead {
+            margin: 0;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 22px;
+            margin-top: 20px
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.02)
+        }
+
+        label {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 8px
+        }
+
+        .file-row {
+            display: flex;
+            gap: 10px;
+            align-items: center
+        }
+
+        .input,
+        .file-input {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            color: var(--text);
+            outline: none;
+            font-size: 14px
+        }
+
+        .file-input {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 0;
+            background: var(--accent);
+            color: #022;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            font-weight: 600
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .statusbar {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.02)
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.06);
+            border-top-color: var(--accent);
+            animation: spin 1s linear infinite;
+            display: inline-block
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .message {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            color: #042;
+            font-weight: 700
+        }
+
+        .msg-info {
+            background: linear-gradient(90deg, rgba(23, 162, 184, 0.12), rgba(23, 162, 184, 0.06));
+            color: #8fe0ee
+        }
+
+        .msg-success {
+            background: linear-gradient(90deg, rgba(40, 167, 69, 0.12), rgba(40, 167, 69, 0.04));
+            color: #9ef0b0
+        }
+
+        .msg-error {
+            background: linear-gradient(90deg, rgba(229, 83, 83, 0.12), rgba(229, 83, 83, 0.04));
+            color: #ffd0d0
+        }
+
+        .msg-warn {
+            background: linear-gradient(90deg, rgba(240, 173, 78, 0.10), rgba(240, 173, 78, 0.03));
+            color: #ffe6b8
+        }
+
+        .note {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 8px
+        }
+
+        /* responsive */
+        @media (max-width:880px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                width: 56px;
+                height: 56px
+            }
+        }
+
+        .small {
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        .download-link {
+            display: inline-block;
+            margin-left: 8px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700
+        }
+
+        .pw-toggle {
+            background: transparent;
+            border: 0;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 13px;
+            padding: 6px;
+            border-radius: 8px
+        }
+
+        .file-meta {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 6px
+        }
+
+        .toast {
+            position: fixed;
+            right: 26px;
+            bottom: 26px;
+            min-width: 260px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all .28s ease
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .toast.info {
+            background: linear-gradient(90deg, #117a8b22, #117a8b11);
+            color: #9feaf0
+        }
+
+        .toast.success {
+            background: linear-gradient(90deg, #1f8a2b22, #1f8a2b11);
+            color: #bff0c4
+        }
+
+        .toast.error {
+            background: linear-gradient(90deg, #e0404022, #e0404011);
+            color: #ffdede
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap" role="main">
+        <header>
+            <div class="logo">CM</div>
+            <div>
+                <h1>Crypto Modern — File Encryption</h1>
+                <p class="lead">Local browser encryption using PBKDF2 &amp; AES-GCM — nothing leaves your device.</p>
+            </div>
+        </header>
+
+        <section class="grid" aria-labelledby="main-title">
+            <div class="card">
+                <label for="file">Select file</label>
+                <div class="file-row">
+                    <div id="fileDrop" class="file-input input" tabindex="0">
+                        <span id="fileName">Click or drop a file here</span>
+                    </div>
+                    <input id="fileInput" type="file" style="display:none" />
+                </div>
+                <div class="file-meta" id="fileMeta">No file selected</div>
+
+                <div style="height:14px"></div>
+
+                <label for="password">Password</label>
+                <div style="display:flex; gap:8px; align-items:center">
+                    <input id="password" class="input" type="password"
+                        placeholder="Enter a strong password (will not be sent)" />
+                    <button id="togglePw" class="pw-toggle" title="Show/hide">Show</button>
+                </div>
+                <div class="note">We derive a 256-bit key with PBKDF2 (SHA-256, 100k iterations). Salt &amp; IV are
+                    prepended to the encrypted file.</div>
+
+                <div style="height:18px"></div>
+
+                <div class="actions">
+                    <button id="encryptBtn" class="btn">ENCRYPT</button>
+                    <button id="decryptBtn" class="btn ghost">DECRYPT</button>
+                    <button id="clearBtn" class="btn ghost" style="margin-left:auto">CLEAR</button>
+                </div>
+
+                <div class="statusbar" id="statusBar" aria-live="polite">
+                    <div id="statusText" class="muted">Ready. Select a file to begin.</div>
+                    <div id="statusRight" class="small"><span id="statusIcon"></span></div>
+                </div>
+
+                <div id="messageArea" style="margin-top:12px"></div>
+            </div>
+
+            <aside class="card">
+                <h3 style="margin-top:0">Quick guide</h3>
+                <ul style="padding-left:18px;color:var(--muted)">
+                    <li>Use a strong password — store it safely.</li>
+                    <li>Encrypted files end with <code>.enc</code>.</li>
+                    <li>Everything runs in your browser (no upload).</li>
+                </ul>
+
+                <hr style="border:none;border-top:1px solid rgba(255,255,255,0.02);margin:12px 0" />
+
+                <div>
+                    <strong>Last action</strong>
+                    <div id="lastAction" class="small muted">—</div>
+                </div>
+
+                <div style="height:14px"></div>
+
+                <div>
+                    <strong>Download</strong>
+                    <div class="small muted" id="downloadInfo">No file ready</div>
+                </div>
+
+            </aside>
+        </section>
+    </main>
+
+    <!-- Toast container -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script>
+        /*
+          Browser-side PBKDF2 + AES-GCM file encrypt/decrypt.
+          Layout: [salt(16 bytes)][iv(12 bytes)][ciphertextWithTag]
+          Uses SubtleCrypto API. Works fully offline.
+        */
+
+        const fileInput = document.getElementById('fileInput');
+        const fileDrop = document.getElementById('fileDrop');
+        const fileName = document.getElementById('fileName');
+        const fileMeta = document.getElementById('fileMeta');
+        const passwordInput = document.getElementById('password');
+        const togglePw = document.getElementById('togglePw');
+        const encryptBtn = document.getElementById('encryptBtn');
+        const decryptBtn = document.getElementById('decryptBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const statusText = document.getElementById('statusText');
+        const statusIcon = document.getElementById('statusIcon');
+        const messageArea = document.getElementById('messageArea');
+        const toast = document.getElementById('toast');
+        const lastAction = document.getElementById('lastAction');
+        const downloadInfo = document.getElementById('downloadInfo');
+
+        let currentFile = null;
+        let lastDownloadUrl = null;
+
+        // helpers
+        const toHex = buf => Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        const bytesToStr = buf => new TextDecoder().decode(buf);
+
+        const showToast = (text, kind = 'info', timeout = 3500) => {
+            toast.className = 'toast show ' + kind;
+            toast.textContent = text;
+            setTimeout(() => { toast.className = 'toast'; }, timeout);
+        };
+
+        const showMessage = (text, kind = 'info') => {
+            messageArea.innerHTML = '';
+            const el = document.createElement('div');
+            el.className = 'message ' + (kind === 'info' ? 'msg-info' : kind === 'success' ? 'msg-success' : kind === 'warn' ? 'msg-warn' : 'msg-error');
+            el.textContent = text;
+            messageArea.appendChild(el);
+            // auto clear after 4s
+            setTimeout(() => {
+                if (messageArea.contains(el)) el.remove();
+            }, 4000);
+        };
+
+        const setStatus = (txt, busy = false) => {
+            statusText.textContent = txt;
+            statusIcon.innerHTML = busy ? '<span class="spinner" aria-hidden="true"></span>' : '';
+        };
+
+        // drag & drop + filepicker
+        fileDrop.addEventListener('click', () => fileInput.click());
+        fileDrop.addEventListener('keydown', (e) => { if (e.key === 'Enter') fileInput.click(); });
+        fileInput.addEventListener('change', (ev) => {
+            if (ev.target.files && ev.target.files[0]) setFile(ev.target.files[0]);
+        });
+        fileDrop.addEventListener('dragover', (e) => { e.preventDefault(); fileDrop.style.opacity = 0.85; });
+        fileDrop.addEventListener('dragleave', () => fileDrop.style.opacity = 1);
+        fileDrop.addEventListener('drop', (e) => {
+            e.preventDefault(); fileDrop.style.opacity = 1;
+            const f = e.dataTransfer.files[0];
+            if (f) setFile(f);
+        });
+
+        function setFile(f) {
+            currentFile = f;
+            fileName.textContent = f.name;
+            fileMeta.textContent = `${(f.size / 1024 / 1024).toFixed(2)} MB • ${f.type || 'unknown'}`;
+            setStatus('File loaded', false);
+            showMessage('File loaded successfully.', 'info');
+        }
+
+        // crypto utils
+        const SALT_LEN = 16;
+        const IV_LEN = 12;
+        const PBKDF2_ITER = 100000;
+        const KEY_LEN = 256; // bits
+
+        async function deriveKey(password, salt) {
+            const enc = new TextEncoder();
+            const passKey = await crypto.subtle.importKey('raw', enc.encode(password), { name: 'PBKDF2' }, false, ['deriveKey']);
+            const key = await crypto.subtle.deriveKey(
+                { name: 'PBKDF2', salt, iterations: PBKDF2_ITER, hash: 'SHA-256' },
+                passKey,
+                { name: 'AES-GCM', length: KEY_LEN },
+                true,
+                ['encrypt', 'decrypt']
+            );
+            return key;
+        }
+
+        function randBytes(len) {
+            const b = new Uint8Array(len);
+            crypto.getRandomValues(b);
+            return b;
+        }
+
+        function downloadBlob(blob, filename) {
+            if (lastDownloadUrl) URL.revokeObjectURL(lastDownloadUrl);
+            const url = URL.createObjectURL(blob);
+            lastDownloadUrl = url;
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            downloadInfo.textContent = filename;
+        }
+
+        // ENCRYPT
+        encryptBtn.addEventListener('click', async () => {
+            if (!currentFile) { showMessage('Select a file first.', 'warn'); setStatus('No file selected'); return; }
+            const password = passwordInput.value;
+            if (!password) { showMessage('Please enter a password.', 'warn'); setStatus('Missing password'); return; }
+
+            setStatus('Encrypting file...', true);
+            showMessage('Encrypting — this runs locally in your browser.', 'info');
+
+            try {
+                const salt = randBytes(SALT_LEN);
+                const iv = randBytes(IV_LEN);
+                const key = await deriveKey(password, salt.buffer);
+
+                // read file
+                const arrayBuffer = await currentFile.arrayBuffer();
+
+                // encrypt
+                const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv, tagLength: 128 }, key, arrayBuffer);
+
+                // build output: salt + iv + ciphertextWithTag
+                const out = new Uint8Array(SALT_LEN + IV_LEN + ct.byteLength);
+                out.set(salt, 0);
+                out.set(iv, SALT_LEN);
+                out.set(new Uint8Array(ct), SALT_LEN + IV_LEN);
+
+                const blob = new Blob([out], { type: 'application/octet-stream' });
+                const outName = currentFile.name + '.enc';
+                downloadBlob(blob, outName);
+
+                setStatus('Encryption completed', false);
+                lastAction.textContent = `Encrypted ${currentFile.name} → ${outName} (${new Date().toLocaleString()})`;
+                showMessage('✅ File successfully encrypted!', 'success');
+            } catch (err) {
+                console.error(err);
+                showMessage('❌ Encryption error: ' + (err.message || err), 'error');
+                setStatus('Encryption failed', false);
+            }
+        });
+
+        // DECRYPT
+        decryptBtn.addEventListener('click', async () => {
+            if (!currentFile) { showMessage('Select a file to decrypt.', 'warn'); setStatus('No file selected'); return; }
+            const password = passwordInput.value;
+            if (!password) { showMessage('Please enter a password.', 'warn'); setStatus('Missing password'); return; }
+
+            setStatus('Decrypting file...', true);
+            showMessage('Decrypting — this runs locally in your browser.', 'info');
+
+            try {
+                const bytes = new Uint8Array(await currentFile.arrayBuffer());
+                if (bytes.length < (SALT_LEN + IV_LEN + 16)) { // 16 bytes min tag check
+                    throw new Error('File is too short or not a valid encrypted file.');
+                }
+                const salt = bytes.slice(0, SALT_LEN);
+                const iv = bytes.slice(SALT_LEN, SALT_LEN + IV_LEN);
+                const ct = bytes.slice(SALT_LEN + IV_LEN);
+
+                const key = await deriveKey(password, salt.buffer);
+
+                const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv, tagLength: 128 }, key, ct.buffer);
+
+                // download decrypted file (strip .enc if present)
+                let outName = currentFile.name.endsWith('.enc') ? currentFile.name.slice(0, -4) : ('decrypted_' + currentFile.name);
+                const blob = new Blob([decrypted], { type: 'application/octet-stream' });
+                downloadBlob(blob, outName);
+
+                setStatus('Decryption completed', false);
+                lastAction.textContent = `Decrypted ${currentFile.name} → ${outName} (${new Date().toLocaleString()})`;
+                showMessage('✅ File successfully decrypted!', 'success');
+            } catch (err) {
+                console.error(err);
+                // detect authentication/tag mismatch by message content in some browsers
+                const msg = (String(err).includes('OperationError') || String(err).includes('Integrity') || String(err).includes('Authentication')) ?
+                    'Invalid password or corrupted file.' : (err.message || String(err));
+                showMessage('❌ ' + msg, 'error');
+                setStatus('Decryption failed', false);
+            }
+        });
+
+        // CLEAR
+        clearBtn.addEventListener('click', () => {
+            currentFile = null;
+            fileName.textContent = 'Click or drop a file here';
+            fileMeta.textContent = 'No file selected';
+            passwordInput.value = '';
+            setStatus('Cleared');
+            showMessage('Cleared inputs.', 'info');
+            downloadInfo.textContent = 'No file ready';
+            lastAction.textContent = '—';
+        });
+
+        // toggle password
+        togglePw.addEventListener('click', () => {
+            if (passwordInput.type === 'password') { passwordInput.type = 'text'; togglePw.textContent = 'Hide'; }
+            else { passwordInput.type = 'password'; togglePw.textContent = 'Show'; }
+        });
+
+        // keyboard: open file on Enter
+        fileDrop.addEventListener('keypress', (e) => { if (e.key === 'Enter') fileInput.click(); });
+
+        // accessibility: load file via file input directly
+        fileInput.addEventListener('click', () => fileInput.value = null);
+
+    </script>
+</body>
+
+</html>
