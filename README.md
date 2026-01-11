@@ -1,6 +1,6 @@
 # 🔐 CryptoModern
 
-🌐 **Acesso ao site:** [https://cryptomodern.netlify.app/](https://cryptomodern.netlify.app/)
+🌐 **Acesso ao site:** [https://cryptomodern.netlify.app/](cryptomodern.onrender.com/)
 
 ---
 
