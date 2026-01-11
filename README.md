@@ -1,6 +1,6 @@
 # 🔐 CryptoModern
 
-🌐 **Acesso ao site:** cryptomodern.onrender.com
+🌐 **Acesso ao site:** https://cryptomodern.onrender.com/
 
 ---
 
@@ -17,8 +17,7 @@ CryptoModern é uma ferramenta web que permite **criptografar** e **descriptogra
 
 ---
 
-## 🛠️ Como usar
-1. Acesse o site: [https://cryptomodern.netlify.app/](https://cryptomodern.netlify.app/).  
+## 🛠️ Como usar 
 2. 📂 Selecione o arquivo que deseja criptografar ou descriptografar.  
 3. 🔑 Insira a **senha** que será usada na criptografia ou que foi usada anteriormente.  
 4. 🖱️ Clique no botão correspondente (Encrypt/Decrypt).  
